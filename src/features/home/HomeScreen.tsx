@@ -28,11 +28,18 @@ export function HomeScreen() {
           <Text style={styles.cardText}>API URL: {data?.apiUrl}</Text>
           <Text style={styles.cardText}>App visits in store: {visits}</Text>
         </View>
-        <Link href="/details" asChild>
-          <Pressable style={styles.button}>
-            <Text style={styles.buttonText}>Go to details</Text>
-          </Pressable>
-        </Link>
+        <View style={styles.actions}>
+          <Link href="/scan" asChild>
+            <Pressable style={styles.button}>
+              <Text style={styles.buttonText}>Scan app QR code</Text>
+            </Pressable>
+          </Link>
+          <Link href="/details" asChild>
+            <Pressable style={styles.secondaryButton}>
+              <Text style={styles.secondaryButtonText}>Go to details</Text>
+            </Pressable>
+          </Link>
+        </View>
       </View>
     </ScreenContainer>
   );
@@ -74,6 +81,9 @@ const styles = StyleSheet.create({
     color: '#334155',
     fontSize: 14,
   },
+  actions: {
+    gap: 12,
+  },
   button: {
     alignItems: 'center',
     backgroundColor: '#2563eb',
@@ -81,8 +91,21 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 14,
   },
+  secondaryButton: {
+    alignItems: 'center',
+    borderColor: '#2563eb',
+    borderRadius: 999,
+    borderWidth: 1,
+    paddingHorizontal: 20,
+    paddingVertical: 14,
+  },
   buttonText: {
     color: '#ffffff',
+    fontSize: 16,
+    fontWeight: '700',
+  },
+  secondaryButtonText: {
+    color: '#2563eb',
     fontSize: 16,
     fontWeight: '700',
   },

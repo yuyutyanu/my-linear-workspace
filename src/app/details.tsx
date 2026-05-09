@@ -1,4 +1,4 @@
-import { Link } from 'expo-router';
+import { Link, useLocalSearchParams } from 'expo-router';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { ScreenContainer } from '@/components/ScreenContainer';
@@ -6,6 +6,8 @@ import { useAppStore } from '@/stores/appStore';
 
 export default function DetailsScreen() {
   const visits = useAppStore((state) => state.visits);
+  const params = useLocalSearchParams();
+  const qrParams = Object.entries(params).filter(([, value]) => typeof value === 'string' && value);
 
   return (
     <ScreenContainer>
@@ -16,6 +18,16 @@ export default function DetailsScreen() {
           src/app/details.tsx.
         </Text>
         <Text style={styles.counter}>Zustand visits: {visits}</Text>
+        {qrParams.length > 0 ? (
+          <View style={styles.payloadCard}>
+            <Text style={styles.payloadTitle}>QR payload</Text>
+            {qrParams.map(([key, value]) => (
+              <Text key={key} style={styles.payloadText}>
+                {key}: {value}
+              </Text>
+            ))}
+          </View>
+        ) : null}
         <Link href="/" asChild>
           <Pressable style={styles.button}>
             <Text style={styles.buttonText}>Back home</Text>
@@ -46,6 +58,22 @@ const styles = StyleSheet.create({
     color: '#334155',
     fontSize: 16,
     fontWeight: '600',
+  },
+  payloadCard: {
+    backgroundColor: '#e0f2fe',
+    borderRadius: 16,
+    gap: 6,
+    padding: 16,
+  },
+  payloadTitle: {
+    color: '#075985',
+    fontSize: 14,
+    fontWeight: '800',
+    textTransform: 'uppercase',
+  },
+  payloadText: {
+    color: '#0f172a',
+    fontSize: 14,
   },
   button: {
     alignItems: 'center',
