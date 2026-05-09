@@ -1,0 +1,26 @@
+{
+  "expo": {
+    "name": "My Linear Workspace",
+    "slug": "my-linear-workspace",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "mylinearworkspace",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static"
+    },
+    "plugins": ["expo-router", "expo-splash-screen"],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    }
+  }
+}
